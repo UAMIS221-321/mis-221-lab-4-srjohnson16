@@ -27,13 +27,13 @@ while (userChoice != 3) //does not execute if userInput is 3
 
 static int GetUserChoice()
 {
-
+    
     DisplayMenu();
     string userChoice = Console.ReadLine();
-
+   
     if (IsValidChoice(userChoice))
     { return int.Parse(userChoice); }
-
+    
     else return 0;
 
 }
@@ -49,27 +49,37 @@ static void GetFull(Random rnd)
 {
     int number = rnd.Next(3, 9);
 
-    for (int row = 0; row <= number; row++)      
-    { 
-        for (int col = row; col >= 0; col--)  
+    for (int row = 0; row <= number; row++)
+    {
+        for (int col = row; col >= 0; col--)
         {
-          
-           System.Console.Write(" o ");
-          //System.Console.WriteLine($"Inner loop Interation # {col}");  
+
+            System.Console.Write(" o ");
         }
         System.Console.WriteLine("\n");
     }
 
 }
 
-static void GetPartial()
+static void GetPartial(Random rnd)
 {
-    System.Console.WriteLine("Full partial triangle");
+    int number = rnd.Next(3, 9);
+
+    System.Console.WriteLine("partial triangle");
+    for (int row = 0; row <= number; row++)
+    {
+        for (int col = row; col >= 0; col--)
+        {
+                         System.Console.Write(" o ");
+        }
+        System.Console.WriteLine("\n");
+    }
 
 }
 
 static void SayInvalid()
 {
+
     System.Console.WriteLine("ERROR. Please enter valid input.");
 
 }
@@ -78,7 +88,7 @@ static void SayInvalid()
 static void RouteMethod(int userChoice)
 {
     if (userChoice == 1) GetFull(new Random());
-    else if (userChoice == 2) GetPartial();
+    else if (userChoice == 2) GetPartial(new Random());
     else if (userChoice != 3) SayInvalid();
 }
 
@@ -91,3 +101,4 @@ static bool IsValidChoice(string userChoice)
     }
     else return false;
 }
+

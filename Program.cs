@@ -1,17 +1,11 @@
 ﻿/* 
 Shaliyah Johnson
 Lab 4 Spring 2023 Due Feb 15th
-Methods/Menus
-Last update: Feb 13
+Methods/Menus/Random numbers/For-loops/Input error handling 
+Last update: Feb 15
 */
-// Goal Feb 13th: 
-// Create Display Mend method
-// routing method  
-// Error handling method
 
-//TODO: Understand nested for loops
-//TODO: Genrate random number with holy triangle
-//TODO: Watch arrays video
+
 
 //*start main
 int userChoice = GetUserChoice();
@@ -23,17 +17,17 @@ while (userChoice != 3) //does not execute if userInput is 3
 
 //*end main
 
-//************************************METHODS*****************************************************************************
+//______________________________________________________METHODS_______________________________________________
 
 static int GetUserChoice()
 {
-    
+
     DisplayMenu();
     string userChoice = Console.ReadLine();
-   
+
     if (IsValidChoice(userChoice))
     { return int.Parse(userChoice); }
-    
+
     else return 0;
 
 }
@@ -45,6 +39,7 @@ static void DisplayMenu()
     System.Console.WriteLine("Enter 1 to display full triangle\nEnter 2 to display partial triangle\nEnter 3 to exit\n");
 }
 
+//Output full triangle
 static void GetFull(Random rnd)
 {
     int number = rnd.Next(3, 9);
@@ -60,23 +55,32 @@ static void GetFull(Random rnd)
     }
 
 }
-
+//Output triangle with missing spots
 static void GetPartial(Random rnd)
 {
     int number = rnd.Next(3, 9);
+    int num2 = rnd.Next(3, 9);
 
     System.Console.WriteLine("partial triangle");
     for (int row = 0; row <= number; row++)
     {
         for (int col = row; col >= 0; col--)
         {
-                         System.Console.Write(" o ");
+
+            if ((row == num2) || (col == num2))
+            {
+                System.Console.Write(" ");
+            }
+            else System.Console.Write("o ");
+
         }
         System.Console.WriteLine("\n");
     }
 
+
 }
 
+//Displays error message
 static void SayInvalid()
 {
 
@@ -101,4 +105,15 @@ static bool IsValidChoice(string userChoice)
     }
     else return false;
 }
+//* End Methods
 
+/*
+Method Definitions 
+GetUserChoice() int - read in user input from console
+DisplayMenu() - void - Display menu items
+GetFull() - void - Displats a randomly generated triangle between 3 and 9 rows and columns
+GetPartial() -void  - Displays a randomly generated triangle that has between 3 and 9 rows and columns with random spots missing 
+SayInvalid() -  void - Display error message if user input is invalid
+RouteMethod() - void - Connects user input with intended function
+IsValidChoice() - bool - return true if user inpur is in the scope of options and return false if user input is not in the scope of options
+*/
